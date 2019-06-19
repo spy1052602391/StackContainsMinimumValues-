@@ -1,0 +1,48 @@
+
+
+import java.util.Stack;
+
+class Solution {
+
+    Stack<Integer> stack = new Stack<Integer>();
+    Stack<Integer> tmpstack = new Stack<Integer>();
+    public void push(int node) {
+        if(tmpstack.size() == 0){
+            stack.push(node);
+            tmpstack.push(node);
+            return;
+        }
+        if(tmpstack.peek() < node){
+            stack.push(node);
+        }else{
+            stack.push(node);
+            tmpstack.push(node);
+        }
+    }
+
+    public void pop() {
+        if(stack.size() == 0 || tmpstack.size() == 0)
+            return;
+        if(stack.peek() == tmpstack.peek()){
+            stack.pop();
+            tmpstack.pop();
+        }else{
+            stack.pop();
+        }
+    }
+
+    public int top() {
+        if(stack.size() == 0)
+            return -1;
+        return stack.peek();
+    }
+
+    public int min() {
+        if(tmpstack.size() == 0)
+            return -1;
+        return tmpstack.peek();
+    }
+}
+
+public class Main {
+}
